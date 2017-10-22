@@ -1,0 +1,55 @@
+/* FORM STYLES:: */
+#user-form{
+  float: none;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  padding: 0 2% 2% 2%;
+  border: 1px solid red;
+}
+
+#user-form > h3{
+  padding-top: 0;
+  padding-bottom: 2%;
+}
+
+#calendar-container{
+  display: none;
+  margin-bottom: 20px;
+  border: 1px solid red;
+}
+
+#calendar{
+  float: none;
+  margin: 0 auto;
+  padding: 0 2% 2% 2%;
+  border: 1px solid red;
+}
+
+#datepicker{
+  padding-left: 27%;
+  text-align: center;
+  border: 1px solid blue;
+}
+
+/* CALENDAR STYLES:: */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  background: green;
+  color: #454545;
+}
+
+.ui-datepicker-week-end .ui-state-default, .ui-widget-content .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  background: yellow;
+  color: #454545;
+}
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    opacity: .35;
+    filter: Alpha(Opacity=35);
+    background-image: none;
+}
+
+.markholiday .iu-state-default, .ui-widget-content .markholiday .ui-state-default{
+  background: orange;
+}
