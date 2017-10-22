@@ -6,7 +6,7 @@
   margin-right: auto;
   margin-bottom: 30px;
   padding: 0 2% 2% 2%;
-  border: 1px solid red;
+  border: 1px solid #EAEAEA;
 }
 
 #user-form > h3{
@@ -17,20 +17,25 @@
 #calendar-container{
   display: none;
   margin-bottom: 20px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #calendar{
   float: none;
   margin: 0 auto;
   padding: 0 2% 2% 2%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+}
+
+#calendar > h3{
+  padding-top: 0;
+  padding-bottom: 2%;
 }
 
 #datepicker{
   padding-left: 27%;
   text-align: center;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 /* CALENDAR STYLES:: */
@@ -52,4 +57,47 @@
 
 .markholiday .iu-state-default, .ui-widget-content .markholiday .ui-state-default{
   background: orange;
+}
+
+@media (max-width: 1024px){
+  #datepicker{
+    padding-left: 22%;
+  }
+}
+
+@media (max-width: 991px){
+  #datepicker{
+    padding-left: 37%;
+  }
+}
+
+@media (max-width: 768px){
+  #datepicker{
+    padding-left: 32%;
+  }
+}
+
+@media (max-width: 720px){
+  #datepicker{
+    padding-left: 29%;
+  }
+}
+
+@media (max-width: 560px){
+  #datepicker{
+    padding-left: 24%;
+  }
+}
+
+@media (max-width: 480px){
+  #datepicker{
+    width: 100%;
+    padding-left: 16%;
+  }
+}
+
+@media (max-width: 360px){
+  #datepicker{
+    padding-left: 0%;
+  }
 }

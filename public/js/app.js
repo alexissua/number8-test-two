@@ -18,59 +18,74 @@ $(function(){
 
   $("#form-button").click(function(event){
     event.preventDefault();
-    $("#calendar-container").css("width", "100%");
-    $("#calendar-container").css("display", "inline-block");
-    //$("#calendar").css("visibility", "visible");
 
-    /* We initialize the main variables:: */
-    splittedDate = $("#inputInitialDate").val().split("-")
-    userYear = splittedDate[0];
-    userMonth = splittedDate[1];
-    userDay = splittedDate[2];
+    if ($("#inputInitialDate").val() != ''){
+      if ($("#inputNumbers").val().length > 0){
+        if ($("#inputCountryCode").val().length > 0){
 
-    /* We storage the user days and its country code:: */
-    numberOfDaysToAdd = parseInt($("#inputNumbers").val(), 10);
-    countryCode = $("#inputCountryCode").val();
+          $("#calendar-container").css("width", "100%");
+          $("#calendar-container").css("display", "inline-block");
 
-    /* We calculate how many days will have the calendar:: */
-    initialDate = new Date(userYear, userMonth - 1, userDay);
-    initialDate.setDate(initialDate.getDate() + numberOfDaysToAdd);
+          /* We initialize the main variables:: */
+          splittedDate = $("#inputInitialDate").val().split("-")
+          userYear = splittedDate[0];
+          userMonth = splittedDate[1];
+          userDay = splittedDate[2];
 
-    /*console.log(userMonth);
-    console.log(userYear + "-" + userMonth + "-" + userDay);
-    console.log(initialDate);*/
+          /* We storage the user days and its country code:: */
+          numberOfDaysToAdd = parseInt($("#inputNumbers").val(), 10);
+          countryCode = $("#inputCountryCode").val();
 
-    /* We call the Holiday api and storage the dates we get from it:: */
-    var apiURL = "https://holidayapi.com/v1/holidays?key=a6fa68e0-b791-4176-a30d-3a02251d2260&country=" + countryCode + "&year="+ userYear +"&month="+ parseInt(userMonth, 10);
-    var jqxhr = $.getJSON(apiURL, function(data){
-      var holidays = new Array();
-      $.each(data, function(key, val) {
-        for (var i = 0; i < val.length; i++){
-          holidays.push(val[i].date);
-          localStorage.setItem("localHolidays", holidays);
+          /* We calculate how many days will have the calendar:: */
+          initialDate = new Date(userYear, userMonth - 1, userDay);
+          initialDate.setDate(initialDate.getDate() + numberOfDaysToAdd);
+
+          /*console.log(userMonth);
+          console.log(userYear + "-" + userMonth + "-" + userDay);
+          console.log(initialDate);*/
+
+          /* We call the Holiday api and storage the dates we get from it:: */
+          var apiURL = "https://holidayapi.com/v1/holidays?key=a6fa68e0-b791-4176-a30d-3a02251d2260&country=" + countryCode + "&year="+ userYear +"&month="+ parseInt(userMonth, 10);
+          var jqxhr = $.getJSON(apiURL, function(data){
+            var holidays = new Array();
+            $.each(data, function(key, val) {
+              for (var i = 0; i < val.length; i++){
+                holidays.push(val[i].date);
+                localStorage.setItem("localHolidays", holidays);
+              }
+            });
+          });
+
+          /* Localstorage with the holidays:: */
+          userHolidays = localStorage.localHolidays.split(",");
+
+          /* Finally, we create the output calendar, with the initial date, final date and the holidays:: */
+          $('#datepicker').datepicker({
+              dateFormat: 'mm-dd-yy',
+              //showButtonPanel: true,
+              showOn: "button",
+              buttonImage: "images/calendar.gif",
+              buttonImageOnly: true,
+              minDate: new Date(userYear, userMonth - 1, userDay),
+              maxDate: new Date(initialDate.getFullYear(), initialDate.getMonth(), initialDate.getDate()),
+              inline: true,
+              beforeShowDay: function(date){
+                var day = date.getDay();
+                var formattedDate = jQuery.datepicker.formatDate("yy-mm-dd", date);
+                return [true, (userHolidays.indexOf(formattedDate)===-1) ? "": "markholiday"];
+              }
+          });
+
+        }else{
+          alert("Please enter the country code.")
         }
-      });
-    });
+      }else{
+        alert("Please enter the number of days.");
+      }
+    }else{
+      alert("Please select an initial date.");
+    }
 
-    /* Localstorage with the holidays:: */
-    userHolidays = localStorage.localHolidays.split(",");
-
-    /* Finally, we create the output calendar, with the initial date, final date and the holidays:: */
-    $('#datepicker').datepicker({
-        dateFormat: 'mm-dd-yy',
-        //showButtonPanel: true,
-        showOn: "button",
-        buttonImage: "images/calendar.gif",
-        buttonImageOnly: true,
-        minDate: new Date(userYear, userMonth - 1, userDay),
-        maxDate: new Date(initialDate.getFullYear(), initialDate.getMonth(), initialDate.getDate()),
-        inline: true,
-        beforeShowDay: function(date){
-          var day = date.getDay();
-          var formattedDate = jQuery.datepicker.formatDate("yy-mm-dd", date);
-          return [true, (userHolidays.indexOf(formattedDate)===-1) ? "": "markholiday"];
-        }
-    });
   });
 
 });
