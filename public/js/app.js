@@ -54,6 +54,8 @@ $(function(){
                 localStorage.setItem("localHolidays", holidays);
               }
             });
+          }).fail(function(){
+            alert("The connection to the API failed!");
           });
 
           /* Localstorage with the holidays:: */

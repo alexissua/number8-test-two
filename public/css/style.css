@@ -9,9 +9,14 @@
   border: 1px solid #EAEAEA;
 }
 
-#user-form > h3{
+#user-form > h4{
   padding-top: 0;
   padding-bottom: 2%;
+  color: #3F51B5;
+}
+
+#user-form label{
+  color: #BDBDBD;
 }
 
 #calendar-container{
@@ -27,9 +32,10 @@
   /* border: 1px solid red; */
 }
 
-#calendar > h3{
+#calendar > h4{
   padding-top: 0;
   padding-bottom: 2%;
+  color: #3F51B5;
 }
 
 #datepicker{
@@ -50,9 +56,11 @@
 }
 
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
-    opacity: .35;
-    filter: Alpha(Opacity=35);
-    background-image: none;
+    /* opacity: .35;
+    filter: Alpha(Opacity=35); */
+    opacity: .1;
+    filter: Alpha(Opacity=1);
+    background: gray;
 }
 
 .markholiday .iu-state-default, .ui-widget-content .markholiday .ui-state-default{
