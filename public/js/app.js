@@ -45,7 +45,8 @@ $(function(){
           console.log(initialDate);*/
 
           /* We call the Holiday api and storage the dates we get from it:: */
-          var apiURL = "https://holidayapi.com/v1/holidays?key=a6fa68e0-b791-4176-a30d-3a02251d2260&country=" + countryCode + "&year="+ userYear +"&month="+ parseInt(userMonth, 10);
+          //var apiURL = "https://holidayapi.com/v1/holidays?key=a6fa68e0-b791-4176-a30d-3a02251d2260&country=" + countryCode + "&year="+ userYear +"&month="+ parseInt(userMonth, 10);
+          var apiURL = "https://holidayapi.com/v1/holidays?key=356c36aa-07f5-4b05-ab69-b03d427dc2fa&country=" + countryCode + "&year="+ userYear +"&month="+ parseInt(userMonth, 10);
           var jqxhr = $.getJSON(apiURL, function(data){
             var holidays = new Array();
             $.each(data, function(key, val) {
